@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import minas.de.oro.Terreno;
 
 public class Simulacion extends javax.swing.JFrame {
@@ -78,7 +79,20 @@ public class Simulacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Inicio.empezarSimulacion();
+        
+        //todo esto es para que el panel que reperesenta el territorio se vaya actualizando
+        //a medida de que se ejecutan los agentes (hilos)
+        Runnable miRunnable = new Runnable() {
+            public void run() {
+                try {
+                    Inicio.empezarSimulacion();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread hilo = new Thread (miRunnable);
+        hilo.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -113,34 +127,65 @@ public class Simulacion extends javax.swing.JFrame {
     public void llenarTerreno(Terreno terreno) {
 //        System.out.println("imprimiendo terreno de la GUI:");
 //        terreno.imprimir();
+        synchronized(this){
+            int cont=0;
+            JLabel pieza = new JLabel();
+            JPanel panel = new JPanel();
+            
+            territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
+            territorioPanel.removeAll();
+//            territorioPanel.updateUI();
+            colorearTerreno(terreno);
+            actualizarTerreno(terreno);
+        }
+    }
+    
+    public void actualizarTerreno(Terreno terreno) {
+//        System.out.println("imprimiendo terreno de la GUI:");
+//        terreno.imprimir();
+        
+        synchronized(this){
+//            territorioPanel.updateUI();
+            borrarTerreno(terreno);
+            int cont=0;
+            JLabel pieza = new JLabel();
+            JPanel panel = new JPanel();
+
+            for (int i = 0; i < terreno.getLargo(); i++) {
+                for (int j = 0; j < terreno.getAncho(); j++) {
+                    pieza=new JLabel();
+                     if(terreno.getMina(i, j).getTipo()==1){
+                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
+                     }
+                     if(terreno.getMina(i, j).getTipo()==2){
+                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
+                     }
+                     if(terreno.getMina(i, j).getTipo()==3){
+                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
+                     }            
+                    //quitar icono a casillas vacias
+                     if(terreno.getMina(i, j).getTipo()==0){
+                      pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
+                     }
+                     panel = (JPanel)territorioPanel.getComponent(cont);
+                     panel.add(pieza);
+//                     panel.updateUI();
+                     cont++;   
+                }
+            }
+//            this.paintAll(this.getGraphics());  
+            this.revalidate();
+        }
+    }
+    
+    public void borrarTerreno(Terreno terreno) {
         int cont=0;
-        JLabel pieza = new JLabel();
         JPanel panel = new JPanel();
-        
-        territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
-        territorioPanel.removeAll();
-        territorioPanel.updateUI();
-        
-        colorearTerreno(terreno);
-        
+
         for (int i = 0; i < terreno.getLargo(); i++) {
             for (int j = 0; j < terreno.getAncho(); j++) {
-                pieza=new JLabel();
-                 if(terreno.getMina(i, j).getTipo()==1){
-                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
-                 }
-                 if(terreno.getMina(i, j).getTipo()==2){
-                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
-                 }
-                 if(terreno.getMina(i, j).getTipo()==3){
-                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
-                 }            
-                //quitar icono a casillas vacias
-                 if(terreno.getMina(i, j).getTipo()==0){
-                  pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
-                 }
                  panel = (JPanel)territorioPanel.getComponent(cont);
-                 panel.add(pieza);                
+                 panel.removeAll();          
                  cont++;   
             }
         }

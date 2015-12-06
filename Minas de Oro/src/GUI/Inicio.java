@@ -494,12 +494,17 @@ public class Inicio extends javax.swing.JFrame {
             }
         }
         
-        simulacion.llenarTerreno(getTerreno());
+        actualizarTerreno();
         
 //        System.out.println("terreno final:");
         
 //        terreno.imprimir();
-//        
-//        System.out.println("proceso terminado");
+////        
+        System.out.println("proceso terminado");
+    }
+    
+    public static void actualizarTerreno(){
+//        simulacion.llenarTerreno(getTerreno());
+        simulacion.actualizarTerreno(getTerreno());
     }
 }
