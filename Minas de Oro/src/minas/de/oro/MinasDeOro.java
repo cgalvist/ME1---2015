@@ -23,7 +23,7 @@ public class MinasDeOro {
         
         int[] posicionAgente = {0,0}; 
         
-        AgenteMina agente = new AgenteMina(1, 100, 0, posicionAgente);
+        AgenteMina agente = new AgenteMina(1, 10, 0, posicionAgente);
         
         agente.accion(terreno);
         

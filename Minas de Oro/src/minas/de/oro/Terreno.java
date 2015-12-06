@@ -30,7 +30,7 @@ public class Terreno {
         for (int a = 0; a < largo; a++) {
             for (int b = 0; b < ancho; b++) {
                 p = Math.random();
-                cantidad = (int) Math.random()*(maximaCantidad-1)+1;
+                cantidad = (int) (Math.random()*(maximaCantidad-1)+1);
                 //esto hay que cambiarlo por la distribucion de probabilidad requerida
                 if (p < 0.25) {
                     terreno[a][b] = new Mina(1, cantidad, valorOro);
