@@ -118,7 +118,8 @@ public class Simulacion extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         
         territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
-        territorioPanel.removeAll(); 
+        territorioPanel.removeAll();
+        territorioPanel.updateUI();
         
         colorearTerreno(terreno);
         
