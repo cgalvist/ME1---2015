@@ -33,8 +33,8 @@ public class AgenteMina {
         
         Mina minaTemporal = null;
         Random random = new Random();
-        int largo = terreno.getLargo();
-        int ancho = terreno.getAncho();
+        int largo = terreno.getLargo()-1;
+        int ancho = terreno.getAncho()-1;
         int nuevaFila = -1;
         int nuevaColumna = -1;
         

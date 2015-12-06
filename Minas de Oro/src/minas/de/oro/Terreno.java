@@ -32,13 +32,13 @@ public class Terreno {
                 p = Math.random();
                 cantidad = (int) (Math.random()*(maximaCantidad-1)+1);
                 //esto hay que cambiarlo por la distribucion de probabilidad requerida
-                if (p < 0.25) {
+                if (p < 0.15) {
                     terreno[a][b] = new Mina(1, cantidad, valorOro);
                 }
-                if (0.25 <= p && p < 0.5) {
+                if (0.15 <= p && p < 0.30) {
                     terreno[a][b] = new Mina(2, cantidad, valorPlata);
                 }
-                if (0.5 <= p && p <= 0.75) {
+                if (0.30 <= p && p <= 0.45) {
                     terreno[a][b] = new Mina(3, cantidad, valorBronce);
                 }
             }

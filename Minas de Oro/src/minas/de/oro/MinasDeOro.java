@@ -1,13 +1,14 @@
 package minas.de.oro;
 
+import java.util.ArrayList;
 import minas.de.oro.agente.AgenteMina;
 
 public class MinasDeOro {
 
     public static void main(String[] args) {
         
-        int largoTerreno = 20;
-        int anchoTerreno = 30;
+        int largoTerreno = 10;
+        int anchoTerreno = 15;
         
         int valorOro = 3;
         int valorPlata = 2;
@@ -23,11 +24,22 @@ public class MinasDeOro {
         
         int[] posicionAgente = {0,0}; 
         
-        AgenteMina agente = new AgenteMina(1, 10, 0, posicionAgente);
+        int numeroDeAgentes = 10;
+        int vidaDelAgente = 100;
         
-        agente.accion(terreno);
+        ArrayList<AgenteMina> agentes = new ArrayList<AgenteMina>();
+        
+        for (int i = 1; i <= numeroDeAgentes; i++) {
+            agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
+        }
+        
+        for (AgenteMina agente : agentes) {
+            agente.accion(terreno);
+        }
         
         System.out.println("proceso terminado");
+        
+        terreno.imprimir();
     }
     
 }
