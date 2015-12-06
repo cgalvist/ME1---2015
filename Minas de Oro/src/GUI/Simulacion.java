@@ -175,8 +175,10 @@ public class Simulacion extends javax.swing.JFrame {
                     if (minaTemporal.getTipo() == 0) {
                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
                     }
-                    mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
-                            + ", idPropietario: " + minaTemporal.getIdPropietario());
+                    if(minaTemporal.getTipo()>0){
+                        mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
+                                + ", idPropietario: " + minaTemporal.getIdPropietario());
+                    }
                     panel = (JPanel) territorioPanel.getComponent(cont);
                     panel.add(mina);
 //                     panel.updateUI();
