@@ -5,6 +5,7 @@
  */
 package minas.de.oro.agente;
 
+import GUI.Inicio;
 import java.util.Random;
 import minas.de.oro.Mina;
 import minas.de.oro.MinasDeOro;
@@ -17,14 +18,14 @@ import minas.de.oro.Terreno;
 public class AgenteMina implements Runnable {
     
     private int id;
-    private int tiempoDeVida;
+    private int vida;
     private int dinero;
     private int[] posicion;
     private Thread hilo;
         
     public AgenteMina(int id, int tiempoDeVida, int dinero, int[] posicion) {
         this.id = id;
-        this.tiempoDeVida = tiempoDeVida;
+        this.vida = tiempoDeVida;
         this.dinero = dinero;
         this.posicion = posicion;
     }
@@ -33,7 +34,7 @@ public class AgenteMina implements Runnable {
     
     public void accion(){
         
-        Terreno terreno = MinasDeOro.getTerreno();
+        Terreno terreno = Inicio.getTerreno();
         
         Mina minaTemporal = null;
         Random random = new Random();
@@ -42,7 +43,7 @@ public class AgenteMina implements Runnable {
         int nuevaFila = -1;
         int nuevaColumna = -1;
         
-        while(tiempoDeVida > 0) {
+        while(vida > 0) {
             
             minaTemporal = terreno.getMina(posicion[0], posicion[1]);
             
@@ -76,7 +77,7 @@ public class AgenteMina implements Runnable {
                 posicion[0] = nuevaFila;
                 posicion[1] = nuevaColumna;
             }
-            tiempoDeVida--;
+            vida--;
             
 //            System.out.println("dinero: " + dinero + ", posicion: (" + posicion[0] + "," + posicion[1] + ")");
         }
@@ -84,12 +85,12 @@ public class AgenteMina implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("ejecutando agente " + id);
+//        System.out.println("ejecutando agente " + id);
         accion();
     }
     
     public void start () {
-    System.out.println("Iniciando " + id );
+//    System.out.println("Iniciando " + id );
     if (hilo == null) {
       hilo = new Thread (this, Integer.toString(id));
       hilo.start ();

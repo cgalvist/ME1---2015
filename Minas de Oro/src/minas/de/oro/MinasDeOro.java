@@ -7,7 +7,7 @@ public class MinasDeOro {
 
 private static Terreno terreno;
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         
         int largoTerreno = 10;
         int anchoTerreno = 15;
@@ -15,19 +15,19 @@ private static Terreno terreno;
         int valorOro = 3;
         int valorPlata = 2;
         int valorBronce = 1;
-        
         int maximaCantidad = 10;
+        int numeroDeAgentes = 10;
+        int vidaDelAgente = 100;
         
         terreno = new Terreno(largoTerreno, anchoTerreno);
         
         terreno.llenarTerreno(valorOro, valorPlata, valorBronce, maximaCantidad);
         
-//        terreno.imprimir();
+        terreno.imprimir();
         
         int[] posicionAgente = {0,0}; 
         
-        int numeroDeAgentes = 10;
-        int vidaDelAgente = 100;
+        
         
         ArrayList<AgenteMina> agentes = new ArrayList<>();
         
@@ -41,7 +41,7 @@ private static Terreno terreno;
         
         System.out.println("proceso terminado");
         
-//        terreno.imprimir();
+        terreno.imprimir();
     }
 
     public static Terreno getTerreno() {
