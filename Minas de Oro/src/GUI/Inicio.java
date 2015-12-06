@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 import minas.de.oro.Terreno;
 import minas.de.oro.agente.AgenteMina;
 
@@ -16,6 +19,7 @@ import minas.de.oro.agente.AgenteMina;
 public class Inicio extends javax.swing.JFrame {
 
     private static Terreno terreno;
+    private Simulacion simulacion = new Simulacion();
     /**
      * Creates new form GUI
      */
@@ -127,6 +131,11 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -157,7 +166,7 @@ public class Inicio extends javax.swing.JFrame {
                                     .addComponent(valorBronceText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel5))
                         .addGap(45, 45, 45)
-                        .addComponent(jSeparator3)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -181,26 +190,25 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSeparator4)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jLabel9)
-                                                                .addComponent(jLabel10))
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(numAgentesText)
-                                                                .addComponent(maxElementosText)
-                                                                .addComponent(puntosAgenteText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addComponent(jLabel11))
-                                                    .addGap(99, 99, 99))))))
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel10))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(numAgentesText)
+                                                    .addComponent(maxElementosText)
+                                                    .addComponent(puntosAgenteText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel11))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(11, 11, 11)))))
                 .addContainerGap())
         );
@@ -256,11 +264,11 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(puntosAgenteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -298,24 +306,31 @@ public class Inicio extends javax.swing.JFrame {
         
         terreno.llenarTerreno(valorOro, valorPlata, valorBronce, maximaCantidad);
         
-        terreno.imprimir();
+        simulacion.llenarTerreno(terreno);
+        simulacion.setVisible(true);
         
-        int[] posicionAgente = {0,0}; 
-        
-        ArrayList<AgenteMina> agentes = new ArrayList<>();
-        
-        for (int i = 1; i <= numeroDeAgentes; i++) {
-            agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
-        }
-        
-        for (AgenteMina agente : agentes) {
-            agente.start();
-        }
-        
-        System.out.println("proceso terminado");
-        
-        terreno.imprimir();
+//        terreno.imprimir();
+//        
+//        int[] posicionAgente = {0,0}; 
+//        
+//        ArrayList<AgenteMina> agentes = new ArrayList<>();
+//        
+//        for (int i = 1; i <= numeroDeAgentes; i++) {
+//            agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
+//        }
+//        
+//        for (AgenteMina agente : agentes) {
+//            agente.start();
+//        }
+//        
+//        System.out.println("proceso terminado");
+//        
+//        terreno.imprimir();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

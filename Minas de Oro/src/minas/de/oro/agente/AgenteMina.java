@@ -38,8 +38,8 @@ public class AgenteMina implements Runnable {
         
         Mina minaTemporal = null;
         Random random = new Random();
-        int largo = terreno.getLargo()-1;
-        int ancho = terreno.getAncho()-1;
+        int largo = terreno.getLargo() - 1;
+        int ancho = terreno.getAncho() - 1;
         int nuevaFila = -1;
         int nuevaColumna = -1;
         
