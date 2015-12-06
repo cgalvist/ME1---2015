@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import minas.de.oro.Mina;
 import minas.de.oro.Terreno;
 
 public class Simulacion extends javax.swing.JFrame {
@@ -147,23 +148,27 @@ public class Simulacion extends javax.swing.JFrame {
             int cont=0;
             JLabel mina = new JLabel();
             JPanel panel = new JPanel();
+            Mina minaTemporal;
 
             for (int i = 0; i < terreno.getLargo(); i++) {
                 for (int j = 0; j < terreno.getAncho(); j++) {
+                    minaTemporal = terreno.getMina(i, j);
                     mina=new JLabel();
-                     if(terreno.getMina(i, j).getTipo()==1){
+                     if(minaTemporal.getTipo()==1){
                          mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
                      }
-                     if(terreno.getMina(i, j).getTipo()==2){
+                     if(minaTemporal.getTipo()==2){
                          mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
                      }
-                     if(terreno.getMina(i, j).getTipo()==3){
+                     if(minaTemporal.getTipo()==3){
                          mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
                      }            
                     //quitar icono a casillas vacias
-                     if(terreno.getMina(i, j).getTipo()==0){
+                     if(minaTemporal.getTipo()==0){
                       mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
                      }
+                     mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
+                                            + ", idPropietario: " + minaTemporal.getIdPropietario());
                      panel = (JPanel)territorioPanel.getComponent(cont);
                      panel.add(mina);
 //                     panel.updateUI();
