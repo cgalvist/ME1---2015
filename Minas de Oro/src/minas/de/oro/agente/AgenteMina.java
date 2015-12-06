@@ -10,7 +10,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import minas.de.oro.Mina;
-import minas.de.oro.MinasDeOro;
 import minas.de.oro.Terreno;
 
 /**
@@ -70,7 +69,7 @@ public class AgenteMina implements Runnable {
                         minaTemporal.setIdPropietario(0);
                         
                         // vamos a dormir el hilo por un tiempo
-                        Thread.sleep(200);
+                        Thread.sleep(300);
                         
                         Inicio.actualizarTerreno();
                         

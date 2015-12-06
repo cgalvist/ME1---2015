@@ -2,12 +2,13 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import minas.de.oro.Mina;
 import minas.de.oro.Terreno;
+import minas.de.oro.agente.AgenteMina;
 
 public class Simulacion extends javax.swing.JFrame {
 
@@ -30,6 +31,8 @@ public class Simulacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        labelMensajes = new javax.swing.JLabel();
         territorioPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -37,6 +40,11 @@ public class Simulacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Territorio");
+
+        labelMensajes.setText("Bienvenido");
+        jPanel1.add(labelMensajes);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         territorioPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         territorioPanel.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -49,7 +57,7 @@ public class Simulacion extends javax.swing.JFrame {
         );
         territorioPanelLayout.setVerticalGroup(
             territorioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
 
         getContentPane().add(territorioPanel, java.awt.BorderLayout.CENTER);
@@ -104,7 +112,9 @@ public class Simulacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labelMensajes;
     private javax.swing.JPanel territorioPanel;
     // End of variables declaration//GEN-END:variables
     
@@ -128,14 +138,13 @@ public class Simulacion extends javax.swing.JFrame {
     public void llenarTerreno(Terreno terreno) {
 //        System.out.println("imprimiendo terreno de la GUI:");
 //        terreno.imprimir();
-        synchronized(this){
-            
+//        synchronized(this){
             territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
             territorioPanel.removeAll();
 //            territorioPanel.updateUI();
             colorearTerreno(terreno);
             actualizarTerreno(terreno);
-        }
+//        }
     }
     
     public void actualizarTerreno(Terreno terreno) {
@@ -149,30 +158,29 @@ public class Simulacion extends javax.swing.JFrame {
             JLabel mina = new JLabel();
             JPanel panel = new JPanel();
             Mina minaTemporal;
-
             for (int i = 0; i < terreno.getLargo(); i++) {
                 for (int j = 0; j < terreno.getAncho(); j++) {
                     minaTemporal = terreno.getMina(i, j);
-                    mina=new JLabel();
-                     if(minaTemporal.getTipo()==1){
-                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
-                     }
-                     if(minaTemporal.getTipo()==2){
-                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
-                     }
-                     if(minaTemporal.getTipo()==3){
-                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
-                     }            
+                    mina = new JLabel();
+                    if (minaTemporal.getTipo() == 1) {
+                        mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
+                    }
+                    if (minaTemporal.getTipo() == 2) {
+                        mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
+                    }
+                    if (minaTemporal.getTipo() == 3) {
+                        mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
+                    }
                     //quitar icono a casillas vacias
-                     if(minaTemporal.getTipo()==0){
-                      mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
-                     }
-                     mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
-                                            + ", idPropietario: " + minaTemporal.getIdPropietario());
-                     panel = (JPanel)territorioPanel.getComponent(cont);
-                     panel.add(mina);
+                    if (minaTemporal.getTipo() == 0) {
+                        mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
+                    }
+                    mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
+                            + ", idPropietario: " + minaTemporal.getIdPropietario());
+                    panel = (JPanel) territorioPanel.getComponent(cont);
+                    panel.add(mina);
 //                     panel.updateUI();
-                     cont++;   
+                    cont++;
                 }
             }
 //            this.paintAll(this.getGraphics());  
@@ -191,5 +199,9 @@ public class Simulacion extends javax.swing.JFrame {
                  cont++;   
             }
         }
+    }
+    
+    public void mostrarMensaje(String mensaje){
+        labelMensajes.setText(mensaje);
     }
 }
