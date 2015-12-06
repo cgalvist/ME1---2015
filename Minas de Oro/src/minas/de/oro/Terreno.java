@@ -91,7 +91,7 @@ public class Terreno {
         this.terreno = terreno;
     }
     
-    public Mina getMina(int largo, int ancho) {
-        return terreno[largo][ancho];
+    public Mina getMina(int fila, int columna) {
+        return terreno[fila][columna];
     }
 }

@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import minas.de.oro.Terreno;
 
@@ -90,8 +91,33 @@ public class Simulacion extends javax.swing.JFrame {
     }
     
     public void llenarTerreno(Terreno terreno) {
+        int cont=0;
+        JLabel pieza=new JLabel();
+        JPanel panel = new JPanel();
         territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
         territorioPanel.removeAll();
         colorearTerreno(terreno);
+        
+        for (int i = 0; i < terreno.getLargo(); i++) {
+            for (int j = 0; j < terreno.getAncho(); j++) {
+                pieza=new JLabel();
+                 if(terreno.getMina(i, j).getTipo()==1){
+                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
+                 }
+                 if(terreno.getMina(i, j).getTipo()==2){
+                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
+                 }
+                 if(terreno.getMina(i, j).getTipo()==3){
+                     pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
+                 }            
+                //quitar icono a casillas vacias
+                 if(terreno.getMina(i, j).getTipo()==0){
+                  pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
+                 }
+                 panel = (JPanel)territorioPanel.getComponent(cont);
+                 panel.add(pieza);                
+                 cont++;   
+            }
+        }
     }
 }
