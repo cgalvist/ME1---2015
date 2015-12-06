@@ -47,6 +47,8 @@ public class AgenteMina implements Runnable {
             int nuevaFila = -1;
             int nuevaColumna = -1;
 
+//            Inicio.agregarPosicion(posicion[0],posicion[1],id);
+            
             while(vida > 0) {
 
 //                if(id==1)
@@ -59,17 +61,18 @@ public class AgenteMina implements Runnable {
 
                     //si la mina en la que estoy tiene minerales y no tiene due%o
                     //la puedo explotar
-                    if (minaTemporal.getTipo() > 0 && minaTemporal.getIdPropietario() == 0) {
+                    if (minaTemporal.getTipo() > 0 && minaTemporal.getIdPropietario() == 0 && minaTemporal.getCantidad()>0) {
                         minaTemporal.setIdPropietario(id);
 
                         while (minaTemporal.getCantidad() > 0) {
                             dinero += minaTemporal.extraer();
+                            
+                            // vamos a dormir el hilo por un tiempo
+                            Thread.sleep(300);
                         }
-                        minaTemporal.setTipo(0);
-                        minaTemporal.setIdPropietario(0);
+//                        minaTemporal.setTipo(0);
+//                        minaTemporal.setIdPropietario(0);
                         
-                        // vamos a dormir el hilo por un tiempo
-                        Thread.sleep(300);
                         
                         Inicio.actualizarTerreno();
                         
@@ -88,6 +91,8 @@ public class AgenteMina implements Runnable {
                             nuevaFila = posicion[0] + (random.nextInt(3) - 1);
                             nuevaColumna = posicion[1] + (random.nextInt(3) - 1);
                         }
+//                        Inicio.eliminarPosicion(posicion[0],posicion[1],id);
+//                        Inicio.agregarPosicion(nuevaFila, nuevaColumna, id);
                         posicion[0] = nuevaFila;
                         posicion[1] = nuevaColumna;
                     }

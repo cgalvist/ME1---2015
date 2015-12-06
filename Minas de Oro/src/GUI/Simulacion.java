@@ -179,6 +179,13 @@ public class Simulacion extends javax.swing.JFrame {
                         mina.setToolTipText("cantidad: " + minaTemporal.getCantidad()
                                 + ", idPropietario: " + minaTemporal.getIdPropietario());
                     }
+                    if(minaTemporal.getIdPropietario()>0){
+                        mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/tool.png")));
+                    }
+                    if(minaTemporal.getIdPropietario()>0){
+                        mina.setIconTextGap(0);
+                        mina.setText(Integer.toString(minaTemporal.getIdPropietario()));
+                    }
                     panel = (JPanel) territorioPanel.getComponent(cont);
                     panel.add(mina);
 //                     panel.updateUI();
@@ -206,4 +213,12 @@ public class Simulacion extends javax.swing.JFrame {
     public void mostrarMensaje(String mensaje){
         labelMensajes.setText(mensaje);
     }
+
+//    void agregarPosicion(Terreno terreno, int fila, int columna, int idAgente) {
+//        
+//    }
+//
+//    void eliminarPosicion(Terreno terreno, int fila, int columna, int idAgente) {
+//        
+//    }
 }

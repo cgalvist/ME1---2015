@@ -122,11 +122,21 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel10.setText("Número de agentes inicial:");
 
-        numAgentesText.setText("10");
+        numAgentesText.setText("6");
+        numAgentesText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numAgentesTextActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Puntos de vida de cada agente:");
 
-        puntosAgenteText.setText("40");
+        puntosAgenteText.setText("25");
+        puntosAgenteText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                puntosAgenteTextActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/load.png"))); // NOI18N
         jButton1.setText("Iniciar Simulación");
@@ -388,6 +398,14 @@ public class Inicio extends javax.swing.JFrame {
         jButton1ActionPerformed(evt);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void numAgentesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numAgentesTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numAgentesTextActionPerformed
+
+    private void puntosAgenteTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntosAgenteTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_puntosAgenteTextActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -476,7 +494,7 @@ public class Inicio extends javax.swing.JFrame {
             agente.start();
         }
         
-        simulacion.mostrarMensaje("Agentes activados");
+        simulacion.mostrarMensaje("Agentes funcionando");
         
         boolean terminado = false;
         
@@ -506,4 +524,12 @@ public class Inicio extends javax.swing.JFrame {
 //        simulacion.llenarTerreno(getTerreno());
         simulacion.actualizarTerreno(getTerreno());
     }
+    
+//    public static void agregarPosicion(int fila, int columna, int idAgente){
+//        simulacion.agregarPosicion(getTerreno(), fila, columna, idAgente);
+//    }
+//    
+//    public static void eliminarPosicion(int fila, int columna, int idAgente){
+//        simulacion.eliminarPosicion(getTerreno(), fila, columna, idAgente);
+//    }
 }
