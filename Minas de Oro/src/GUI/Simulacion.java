@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import java.awt.BorderLayout;
@@ -12,10 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import minas.de.oro.Terreno;
 
-/**
- *
- * @author cesar
- */
 public class Simulacion extends javax.swing.JFrame {
 
     /**
@@ -38,43 +29,67 @@ public class Simulacion extends javax.swing.JFrame {
     private void initComponents() {
 
         territorioPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Territorio");
+
+        territorioPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        territorioPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
         javax.swing.GroupLayout territorioPanelLayout = new javax.swing.GroupLayout(territorioPanel);
         territorioPanel.setLayout(territorioPanelLayout);
         territorioPanelLayout.setHorizontalGroup(
             territorioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         territorioPanelLayout.setVerticalGroup(
             territorioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGap(0, 491, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(territorioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(territorioPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(territorioPanel, java.awt.BorderLayout.CENTER);
+
+        jPanel3.setLayout(new java.awt.GridLayout());
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/load.png"))); // NOI18N
+        jButton1.setText("Iniciar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/back.png"))); // NOI18N
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Inicio.empezarSimulacion();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel territorioPanel;
     // End of variables declaration//GEN-END:variables
     
@@ -96,11 +111,15 @@ public class Simulacion extends javax.swing.JFrame {
     }
     
     public void llenarTerreno(Terreno terreno) {
+        System.out.println("imprimiendo terreno de la GUI:");
+        terreno.imprimir();
         int cont=0;
-        JLabel pieza=new JLabel();
+        JLabel pieza = new JLabel();
         JPanel panel = new JPanel();
+        
         territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
-        territorioPanel.removeAll();
+        territorioPanel.removeAll(); 
+        
         colorearTerreno(terreno);
         
         for (int i = 0; i < terreno.getLargo(); i++) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import java.awt.BorderLayout;
@@ -15,14 +10,12 @@ import javax.swing.JPanel;
 import minas.de.oro.Terreno;
 import minas.de.oro.agente.AgenteMina;
 
-/**
- *
- * @author cesar
- */
 public class Inicio extends javax.swing.JFrame {
 
     private static Terreno terreno;
-    private Simulacion simulacion = new Simulacion();
+    private static Simulacion simulacion = new Simulacion();
+    private static int numeroDeAgentes;
+    private static int vidaDelAgente;
     private JFrame ventana = new JFrame();
     /**
      * Creates new form GUI
@@ -362,8 +355,8 @@ public class Inicio extends javax.swing.JFrame {
         int valorPlata = Integer.parseInt(valorPlataText.getText());
         int valorBronce = Integer.parseInt(valorBronceText.getText());
         int maximaCantidad = Integer.parseInt(maxElementosText.getText());
-        int numeroDeAgentes = Integer.parseInt(numAgentesText.getText());
-        int vidaDelAgente = Integer.parseInt(puntosAgenteText.getText());
+        numeroDeAgentes = Integer.parseInt(numAgentesText.getText());
+        vidaDelAgente = Integer.parseInt(puntosAgenteText.getText());
         
         terreno = new Terreno(largoTerreno, anchoTerreno);
         
@@ -371,24 +364,10 @@ public class Inicio extends javax.swing.JFrame {
         
         simulacion.llenarTerreno(terreno);
         simulacion.setVisible(true);
+                
+//        terreno.imprimir();
         
-//        terreno.imprimir();
-//        
-//        int[] posicionAgente = {0,0}; 
-//        
-//        ArrayList<AgenteMina> agentes = new ArrayList<>();
-//        
-//        for (int i = 1; i <= numeroDeAgentes; i++) {
-//            agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
-//        }
-//        
-//        for (AgenteMina agente : agentes) {
-//            agente.start();
-//        }
-//        
-//        System.out.println("proceso terminado");
-//        
-//        terreno.imprimir();
+//        empezarSimulacion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -414,9 +393,6 @@ public class Inicio extends javax.swing.JFrame {
         jButton1ActionPerformed(evt);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -489,8 +465,41 @@ public class Inicio extends javax.swing.JFrame {
     public static Terreno getTerreno() {
         return terreno;
     }
-
-    public static void setTerreno(Terreno aTerreno) {
-        terreno = aTerreno;
+    
+    public static void empezarSimulacion(){
+        
+        int[] posicionAgente = {0,0}; 
+        
+        System.out.println("iniciando agentes");
+          
+        ArrayList<AgenteMina> agentes = new ArrayList<>();
+        for (int i = 1; i <= numeroDeAgentes; i++) {
+            agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
+        }
+        
+        for (AgenteMina agente : agentes) {
+            agente.start();
+        }
+        
+        boolean terminado = false;
+        
+        //asegurarse que todos los agentes estan muertos
+        //(esto se puede mejorar)
+        while (!terminado){
+            terminado = true;
+            for (AgenteMina agente : agentes) {
+                if(agente.getVida()>0){
+                    terminado = false;
+                }
+            }
+        }
+        
+        simulacion.llenarTerreno(getTerreno());
+        
+        System.out.println("terreno final:");
+        
+        terreno.imprimir();
+        
+        System.out.println("proceso terminado");
     }
 }
