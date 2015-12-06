@@ -45,7 +45,7 @@ public class Terreno {
         }
     }
     
-    public void imprimirTerreno(){
+    public void imprimir(){
         for (int a = 0; a < largo; a++) {
             for (int b = 0; b < ancho; b++) {
                 System.out.print(terreno[a][b].getTipo()+" ");
@@ -66,4 +66,32 @@ public class Terreno {
 //
 //        return k - 1;
 //    }
+
+    public int getLargo() {
+        return largo;
+    }
+
+    public void setLargo(int largo) {
+        this.largo = largo;
+    }
+
+    public int getAncho() {
+        return ancho;
+    }
+
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
+    }
+
+    public Mina[][] getTerreno() {
+        return terreno;
+    }
+
+    public void setTerreno(Mina[][] terreno) {
+        this.terreno = terreno;
+    }
+    
+    public Mina getMina(int largo, int ancho) {
+        return terreno[largo][ancho];
+    }
 }

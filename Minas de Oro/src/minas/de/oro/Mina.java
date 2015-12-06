@@ -4,6 +4,7 @@ public class Mina implements Cloneable{
     private int tipo;   //0 es vacio, 1 es oro, 2 es plata y 3 es bronce
     private int cantidad;
     private int valor;
+    private int idPropietario = 0;
 
     public Mina(int tipo, int cantidad, int valor) {
         this.tipo = tipo;
@@ -31,8 +32,17 @@ public class Mina implements Cloneable{
         return valor;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public int getIdPropietario() {
+        return idPropietario;
+    }
+
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
+    }
+    
+    public int extraer(){
+        cantidad--;
+        return valor;
     }
     
     public Object clone(){
