@@ -128,9 +128,6 @@ public class Simulacion extends javax.swing.JFrame {
 //        System.out.println("imprimiendo terreno de la GUI:");
 //        terreno.imprimir();
         synchronized(this){
-            int cont=0;
-            JLabel pieza = new JLabel();
-            JPanel panel = new JPanel();
             
             territorioPanel.setLayout(new java.awt.GridLayout(terreno.getLargo(), terreno.getAncho()));
             territorioPanel.removeAll();
@@ -148,27 +145,27 @@ public class Simulacion extends javax.swing.JFrame {
 //            territorioPanel.updateUI();
             borrarTerreno(terreno);
             int cont=0;
-            JLabel pieza = new JLabel();
+            JLabel mina = new JLabel();
             JPanel panel = new JPanel();
 
             for (int i = 0; i < terreno.getLargo(); i++) {
                 for (int j = 0; j < terreno.getAncho(); j++) {
-                    pieza=new JLabel();
+                    mina=new JLabel();
                      if(terreno.getMina(i, j).getTipo()==1){
-                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
+                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gold.png")));
                      }
                      if(terreno.getMina(i, j).getTipo()==2){
-                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
+                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/silver.png")));
                      }
                      if(terreno.getMina(i, j).getTipo()==3){
-                         pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
+                         mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bronze.png")));
                      }            
                     //quitar icono a casillas vacias
                      if(terreno.getMina(i, j).getTipo()==0){
-                      pieza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
+                      mina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/vacio.png")));
                      }
                      panel = (JPanel)territorioPanel.getComponent(cont);
-                     panel.add(pieza);
+                     panel.add(mina);
 //                     panel.updateUI();
                      cont++;   
                 }
