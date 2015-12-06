@@ -111,8 +111,8 @@ public class Simulacion extends javax.swing.JFrame {
     }
     
     public void llenarTerreno(Terreno terreno) {
-        System.out.println("imprimiendo terreno de la GUI:");
-        terreno.imprimir();
+//        System.out.println("imprimiendo terreno de la GUI:");
+//        terreno.imprimir();
         int cont=0;
         JLabel pieza = new JLabel();
         JPanel panel = new JPanel();

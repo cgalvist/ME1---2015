@@ -470,7 +470,7 @@ public class Inicio extends javax.swing.JFrame {
         
         int[] posicionAgente = {0,0}; 
         
-        System.out.println("iniciando agentes");
+//        System.out.println("iniciando agentes");
           
         ArrayList<AgenteMina> agentes = new ArrayList<>();
         for (int i = 1; i <= numeroDeAgentes; i++) {
@@ -496,10 +496,10 @@ public class Inicio extends javax.swing.JFrame {
         
         simulacion.llenarTerreno(getTerreno());
         
-        System.out.println("terreno final:");
+//        System.out.println("terreno final:");
         
-        terreno.imprimir();
-        
-        System.out.println("proceso terminado");
+//        terreno.imprimir();
+//        
+//        System.out.println("proceso terminado");
     }
 }
