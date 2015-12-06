@@ -7,18 +7,20 @@ package minas.de.oro.agente;
 
 import java.util.Random;
 import minas.de.oro.Mina;
+import minas.de.oro.MinasDeOro;
 import minas.de.oro.Terreno;
 
 /**
  *
  * @author cesar
  */
-public class AgenteMina {
+public class AgenteMina implements Runnable {
     
     private int id;
     private int tiempoDeVida;
     private int dinero;
     private int[] posicion;
+    private Thread hilo;
         
     public AgenteMina(int id, int tiempoDeVida, int dinero, int[] posicion) {
         this.id = id;
@@ -29,7 +31,9 @@ public class AgenteMina {
     
     //acciones
     
-    public void accion(Terreno terreno){
+    public void accion(){
+        
+        Terreno terreno = MinasDeOro.getTerreno();
         
         Mina minaTemporal = null;
         Random random = new Random();
@@ -77,4 +81,18 @@ public class AgenteMina {
 //            System.out.println("dinero: " + dinero + ", posicion: (" + posicion[0] + "," + posicion[1] + ")");
         }
     }
+
+    @Override
+    public void run() {
+        System.out.println("ejecutando agente " + id);
+        accion();
+    }
+    
+    public void start () {
+    System.out.println("Iniciando " + id );
+    if (hilo == null) {
+      hilo = new Thread (this, Integer.toString(id));
+      hilo.start ();
+    }
+  }
 }
