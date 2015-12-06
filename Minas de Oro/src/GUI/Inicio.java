@@ -8,6 +8,9 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import minas.de.oro.Terreno;
 import minas.de.oro.agente.AgenteMina;
@@ -20,11 +23,15 @@ public class Inicio extends javax.swing.JFrame {
 
     private static Terreno terreno;
     private Simulacion simulacion = new Simulacion();
+    private JFrame ventana = new JFrame();
     /**
      * Creates new form GUI
      */
     public Inicio() {
         initComponents();
+        
+        // Se cambia el ícono de la aplicación
+        this.setIconImage(new ImageIcon(getClass().getResource("/recursos/gold.png")).getImage());
     }
 
     /**
@@ -61,8 +68,16 @@ public class Inicio extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Minas de Oro");
         setResizable(false);
 
         jLabel1.setText("simulador de minas de oro");
@@ -80,7 +95,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        anchoTerrenoText.setText("20");
+        anchoTerrenoText.setText("10");
         anchoTerrenoText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anchoTerrenoTextActionPerformed(evt);
@@ -123,13 +138,15 @@ public class Inicio extends javax.swing.JFrame {
 
         puntosAgenteText.setText("40");
 
-        jButton1.setText("Iniciar simulación");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/load.png"))); // NOI18N
+        jButton1.setText("Iniciar Simulación");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +155,52 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jMenu1.setText("Archivo");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/load.png"))); // NOI18N
+        jMenuItem1.setText("Iniciar Simulación");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Ayuda");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/instructions.png"))); // NOI18N
+        jMenuItem2.setText("Instrucciones");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/help.png"))); // NOI18N
+        jMenuItem3.setText("Acerca De");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
+        jMenuItem4.setText("Salir");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,9 +269,9 @@ public class Inicio extends javax.swing.JFrame {
                                             .addComponent(jLabel11))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jButton2)))
                                 .addGap(11, 11, 11)))))
                 .addContainerGap())
         );
@@ -332,6 +395,25 @@ public class Inicio extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JOptionPane.showMessageDialog(ventana, "Este simulador representa una serie de agentes que explotan minas de un territorio. \n\n" +
+                                "Para empezar, indique los parámetros de la aplicación en la ventana principal. Luego haga clic en el botón \"Iniciar\n" +
+				"Simulación\" y aparecerá una ventana representando el territorio de minas. \n","acerca de",JOptionPane.INFORMATION_MESSAGE,new ImageIcon(getClass().getResource("/recursos/instructions.png")));
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(ventana, "Minas de Oro\n\n"+"Creadores:\n"+"- Cesar Galvis Triviño\n"+"- Ivan Esteban Ballesteros Vásquez\n"+"- Mauricio Oliviery Polanco\n"
+                +"- Mauro Herrera Pupo\n\n"+"Universidad Nacional De Colombia\n"+"Proyecto de Modelos Estocásticos y Simulación en Computación y Comunicaciones\n"+"2015","acerca de",JOptionPane.INFORMATION_MESSAGE,new ImageIcon(getClass().getResource("/recursos/help.png")));
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        jButton1ActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,6 +466,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

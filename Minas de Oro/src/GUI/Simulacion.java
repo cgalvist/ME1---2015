@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import minas.de.oro.Terreno;
@@ -22,6 +23,9 @@ public class Simulacion extends javax.swing.JFrame {
      */
     public Simulacion() {
         initComponents();
+        
+        // Se cambia el ícono de la aplicación
+        this.setIconImage(new ImageIcon(getClass().getResource("/recursos/gold.png")).getImage());
     }
 
     /**
@@ -36,16 +40,17 @@ public class Simulacion extends javax.swing.JFrame {
         territorioPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Territorio");
 
         javax.swing.GroupLayout territorioPanelLayout = new javax.swing.GroupLayout(territorioPanel);
         territorioPanel.setLayout(territorioPanelLayout);
         territorioPanelLayout.setHorizontalGroup(
             territorioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
         territorioPanelLayout.setVerticalGroup(
             territorioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
