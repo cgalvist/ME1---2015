@@ -1,6 +1,8 @@
 package GUI;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,6 +15,7 @@ public class Inicio extends javax.swing.JFrame {
     private static Simulacion simulacion = new Simulacion();
     private static int numeroDeAgentes;
     private static int vidaDelAgente;
+    private static ArrayList<AgenteMina> agentes = new ArrayList<>();
     private JFrame ventana = new JFrame();
     /**
      * Creates new form GUI
@@ -70,7 +73,7 @@ public class Inicio extends javax.swing.JFrame {
         setTitle("Minas de Oro");
         setResizable(false);
 
-        jLabel1.setText("Simulador de Minas de Oro");
+        jLabel1.setText("Minas de Oro");
 
         jLabel2.setText("Indique los parámetros que se requieren para iniciar la simulación:");
 
@@ -239,13 +242,8 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(largoTerrenoText)
                             .addComponent(anchoTerrenoText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel2)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -271,6 +269,10 @@ public class Inicio extends javax.swing.JFrame {
                                         .addComponent(jButton2)))
                                 .addGap(11, 11, 11)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(171, 171, 171))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,9 +485,9 @@ public class Inicio extends javax.swing.JFrame {
         
         int[] posicionAgente = {0,0}; 
         
-//        System.out.println("iniciando agentes");
-          
-        ArrayList<AgenteMina> agentes = new ArrayList<>();
+        simulacion.mostrarMensaje("Iniciando agentes");
+        
+//        ArrayList<AgenteMina> agentes = new ArrayList<>();
         for (int i = 1; i <= numeroDeAgentes; i++) {
             agentes.add(new AgenteMina(i, vidaDelAgente, 0, posicionAgente));
         }
@@ -511,18 +513,29 @@ public class Inicio extends javax.swing.JFrame {
         
         actualizarTerreno();
         
-//        System.out.println("terreno final:");
-        
-//        terreno.imprimir();
-////        
-//        System.out.println("proceso terminado");
-        
         simulacion.mostrarMensaje("Proceso finalizado");
     }
     
     public static void actualizarTerreno(){
 //        simulacion.llenarTerreno(getTerreno());
         simulacion.actualizarTerreno(getTerreno());
+    }
+    
+    public static void detenerSimulacion(){
+        
+         boolean terminado = false;
+        
+        //asegurarse que todos los agentes estan muertos
+        //(esto se puede mejorar)
+        while (!terminado){
+            terminado = true;
+            for (AgenteMina agente : agentes) {
+                if(!agente.terminar()){
+                    terminado = false;
+                }
+            }
+        }
+        simulacion.mostrarMensaje("Simulación detenida");
     }
     
 //    public static void agregarPosicion(int fila, int columna, int idAgente){

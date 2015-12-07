@@ -105,15 +105,30 @@ public class AgenteMina implements Runnable {
             Logger.getLogger(AgenteMina.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void start () {
-//    System.out.println("Iniciando " + id );
-    if (hilo == null) {
-      hilo = new Thread (this, Integer.toString(id));
-      hilo.start ();
-    }
-  }
 
+    public void start() {
+//    System.out.println("Iniciando " + id );
+        if (hilo == null) {
+            hilo = new Thread(this, Integer.toString(id));
+            hilo.start();
+        }
+    }
+
+    public boolean terminar() {
+        boolean terminar = false;
+        
+        try {
+            vida = 0;
+            posicion[0] = 0;
+            posicion[1] = 0;
+            terminar = true;
+        }catch(Exception e){
+            terminar = false;
+        }
+        
+        return terminar;
+    }
+    
     public int getVida() {
         return vida;
     }
