@@ -63,7 +63,7 @@ public class Simulacion extends javax.swing.JFrame {
 
         getContentPane().add(territorioPanel, java.awt.BorderLayout.CENTER);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/load.png"))); // NOI18N
         jButton1.setText("Iniciar");
@@ -75,7 +75,7 @@ public class Simulacion extends javax.swing.JFrame {
         jPanel3.add(jButton1);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/stop.png"))); // NOI18N
-        jButton3.setText("Pausar");
+        jButton3.setText("Detener");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
